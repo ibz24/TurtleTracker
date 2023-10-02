@@ -21,18 +21,21 @@ line_list = file_object.readlines()
 #Close the file
 file_object.close()
 
-#Pretend we read one line of data from the file
-lineString = line_list[200]
+#Generate a for loop to read through multiple lines
+for lineString in line_list: 
+    # Check if line is a data line (if line starts with a hashtag or "u", don't process)
+    if lineString[0] in ("#", "u"): 
+        continue
 
-#Split the string into a list of data items
-lineData = lineString.split()
+    #Split the string into a list of data items; hit "tab" to indent these lines in the for loop
+    lineData = lineString.split()
 
-#Extract items in list into variables
-record_id = lineData[0]
-obs_date = lineData[2]
-obs_lc = lineData[4]
-obs_lat = lineData[6]
-obs_lon = lineData[7]
+    #Extract items in list into variables
+    record_id = lineData[0]
+    obs_date = lineData[2]
+    obs_lc = lineData[4]
+    obs_lat = lineData[6]
+    obs_lon = lineData[7]
 
-#Print the location of sara
-print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+    #Print the location of sara
+    print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
