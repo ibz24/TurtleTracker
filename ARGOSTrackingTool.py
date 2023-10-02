@@ -16,15 +16,13 @@ file_name = './data/raw/sara.txt'
 file_object = open(file_name,'r')
 
 #Read contents of file into a list
-line_list = file_object.readlines()
+lineString = file_object.readline() #Read one line at a time with a while loop
 
-#Close the file
-file_object.close()
-
-#Generate a for loop to read through multiple lines
-for lineString in line_list: 
+#Pretend we read one line of data from the file
+while lineString: #while loop will be active if reading the line returns something 
     # Check if line is a data line (if line starts with a hashtag or "u", don't process)
-    if lineString[0] in ("#", "u"): 
+    if lineString[0] in ("#", "u"):
+        lineString = file_object.readline() 
         continue
 
     #Split the string into a list of data items; hit "tab" to indent these lines in the for loop
@@ -39,3 +37,6 @@ for lineString in line_list:
 
     #Print the location of sara
     print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+
+    #Read next line
+    lineString = file_object.readline()
